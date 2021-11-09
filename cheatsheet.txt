@@ -30,3 +30,6 @@ kubectl config use-context kind-k8s2
 
 # Get a Token for admin-user
 kubectl get -n kube-system secret $(kubectl get -n kube-system sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}" 
+
+# Add a Cluster Admin for Rancher
+kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user admin-user
